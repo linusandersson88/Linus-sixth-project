@@ -1,9 +1,12 @@
 const phraseList =
-["that teabag was actually better the second time around",
-"the landscapers are coming over today to trim the bush",
-"yes my favorite animal is definitely the beaver",
-"a pearl necklace would look really nice on you",
-"i wonder what happens to nuts in space"];
+["Hit the sack",
+"Make a long story short",
+"Go to sleep",
+"Doing a good job",
+"Good luck",
+"I have no idea",
+"You can say that again",
+"Speak of the devil"];
 
 let phrase = "";
 let lives = 5;
@@ -37,11 +40,12 @@ $('#qwerty button').click(function(event) {
 		$('.lose').css('display','flex');
 		restartGame();
 	} else {
-	$(this).off();
+	$(this).attr('disabled', 'true');
 	$(this).addClass('chosen');
 	checkLetter($(this).text());
-		}
+	}
 });
+
 
 
 let checkLetter = (letter) => {
@@ -65,19 +69,10 @@ let checkLetter = (letter) => {
 
 let restartGame = () => {
 	lives = 5
-	$('tries img').attr('src','images/liveHeart.png');
+	$('.tries img').attr('src','images/liveHeart.png');
 	$('.letter, .space').remove();
 	$('.chosen').removeClass('chosen');
-	$('#qwerty button').off();
-$('#qwerty button').click(function(event) {
-	if (lives == 1) {
-		$('.lose').css('display','flex');
-		restartGame();
-	}
-	$(this).off();
-	$(this).addClass('chosen');
-	checkLetter($(this).text());
-		
-});
+	$('#qwerty button').removeAttr('disabled');
+
 
 }
